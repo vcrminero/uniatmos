@@ -1,0 +1,416 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+
+      body {
+        background-color: #f8f9fb;
+      }
+
+.globe-container {
+    position: relative;
+    max-width: 750px;
+    margin: auto;
+    z-index: -1;
+}
+    #globe {
+    position: absolute;
+    top: -800px;
+    right: -55%;
+    height: 650px;
+    width: 650px;
+    margin: 0 auto calc(var(--unit) * 4) auto;
+    opacity: 0;
+    transition: opacity 1000ms var(--ease);
+    pointer-events: none;
+    touch-action: none;
+    }
+    .peekaboo {
+        opacity: .40 !important;
+    }
+
+    p, a, h1, h2, h3, span {
+      color: #243141;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 400;
+    }
+
+
+    .navbar {
+      height: 65px;
+      -webkit-backdrop-filter: saturate(180%) blur(55px);
+    backdrop-filter: saturate(180%) blur(55px);
+    opacity: .90;
+    }
+
+    .btn-outline-success {
+    color: #4285f4;
+    border-color: #4285f4;
+    }
+
+    .btn-outline-success:hover {
+    color: #fff;
+    background-color: #4285f4;
+    border-color: #4285f4;
+    }
+
+    .accordion-button:not(.collapsed) {
+    color: #0c63e4;
+    background-color: white;
+    z-index: 2;
+    }
+
+    .accordion-button {
+    background-color: white;
+    z-index: 2;
+    }
+
+    .accordion-body {
+    background: white;
+    }
+
+
+    .btn {
+    padding: 3px 10px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+    color: #666 !important;
+    font-size: 15px;
+    font-weight: 400;
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover {
+      color: rgba(0,0,0,.9) !important;
+    }
+
+    .accordion-button:not(.collapsed) {
+    color: white;
+    background-color: #4285f4;
+    }
+
+    .accordion-button:not(.collapsed):hover {
+    color: white;
+    background-color: #4285f4;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+    background-image: url(assets/img/flecha-activa.svg);
+    }
+
+    .accordion-button:hover {
+    z-index: 2;
+    background: #caddff;
+    }
+
+    .accordion-body {
+    background: #f1f6ff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    }
+
+    .accordion-button {
+      font-weight: 500;
+      color: #243141;
+    }
+
+    .link-texto {
+      font-size: 14px; color: #8a94a6;
+    }
+
+    .link-texto:hover {
+      color: #4285f4;
+    }
+
+
+
+    </style>
+  </head>
+  <body>
+
+    <!-- Header -->
+    <div style="height:40px; color: white; text-align: center; background-color: #111111; padding: 7px; font-size: 15px; ">Mapa de Covid con datos de la Secretaria de Salud Federal. <a href="http://ri.atmosfera.unam.mx:8080/ACVC/servmapas" style="color:#4285f4">Ver aquí &gt;</a></div>
+
+    <!-- Navbar -->
+    <nav class="sticky-top navbar navbar-expand-lg navbar-light bg-light" style="background-color: white !important; box-shadow: 0 2px 6px 0 rgb(0 0 0 / 12%), inset 0 -1px 0 0 #dadce0;">
+    <div class="container">
+      <a class="navbar-brand" href="#"><span class="color-negro" style="font-weight: 500; font-size: 22px;">UNIATMOS</span></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0" style="margin-left: auto; margin-right: 10px;">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Créditos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacto</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+              </svg>
+          </a>
+          </li>
+
+
+          
+        </ul>
+        <a href="http://ri.atmosfera.unam.mx:8080/ACVC/servmapas"><button class="btn btn-outline-success me-2" type="button">Atlas de COVID</button></a>
+      </div>
+    </div>
+    </nav>
+
+    <div style="text-align: center; margin-top: 50px;">
+      <h1 class="color-negro" style="font-weight: 500; margin-bottom: 0px;">UNIATMOS</h1>
+      <p class="color-negro" style="font-size: 16px;">Unidad de Informática para las Ciencias Atmosféricas y Ambientales.</p>
+    </div>
+
+
+    <!-- Acordeón -->
+    <div class="container" style="margin-top: 50px;">
+
+        <div class="accordion" style="width: 800px;margin-left: auto;margin-right: auto;" id="accordionExample">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Atlas de COVID-19, clima, cambio climático y vulnerabilidad en México
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body align-items-start container">
+
+                <div class="row">
+                  <div class="col-md-4" style="text-align: center;">
+                    <img style="border-radius: 3px;" src="http://atlasclimatico.unam.mx/uniatmos_portal/img/accordion/ACVC_INCA.gif">
+                  </div>
+  
+                  <div class="col-md-8">
+                    <p>Visualizador a nivel estatal y municipal, con datos referentes a los casos asociados a COVID-19, con el propósito de facilitar a todos los usuarios que requieran su uso y redistribución.</p>
+                    <button class="btn btn-outline-success me-2" type="button" style="margin-bottom: 7px;">Ver Atlas de COVID-19</button><br>
+                    <a class="link-texto" href="https://www.facebook.com/watch/UNIATMOS/" target="_blank">Presentación &gt;</a>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Repositorio Institucional de Datos Científicos Geoespaciales, CCA, UNAM
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Atlas Climático Digital de México
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Bioclima, cambio climático y ecosistemas en el estado de Tabasco y áreas adyacentes, México
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Escenarios de cambio climático regionales CMIP5
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                Redes de observación atmosférica y ambiental
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                Atlas Climático de México y Áreas Adyacentes. Volumen 1
+              </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                Atlas Climático de México y Áreas Adyacentes. Volumen 2
+              </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                Vulnerabilidad y adaptación a los efectos de cambio climático
+              </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTen">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                Atlas de Cambio Climático del Estado de Oaxaca, México
+              </button>
+            </h2>
+            <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEleven">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                Mapa de la UNAM
+              </button>
+            </h2>
+            <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwelve">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                Proyectos y publicaciones (2010-2020)
+              </button>
+            </h2>
+            <div id="collapseTwelve" class="accordion-collapse collapse" aria-labelledby="headingTwelve" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+    <!-- Mapa -->
+    <div class="globe-container">
+      <div id="globe">
+        <canvas width="500" height="500" style="width: 500px; height: 500px;"></canvas>
+      </div>
+    </div>
+
+
+    <!-- Logos de asociaciones -->
+    <div style="text-align: center; margin-top: 75px; margin-bottom: 75px;">
+      <div class="container" style="width: 850px">
+          <div class="row">
+
+            <div class="col">
+              <img style="width: 120px" src="assets/img/OGC_Logo.png">
+            </div>
+
+            <div class="col">
+              <img style="width: 95px" src="assets/img/imagenUGOB.png">
+            </div>
+
+            <div class="col">
+              <img style="width: 140px" src="assets/img/lagf2014.png">
+            </div>
+
+            <div class="col">
+              <img style="width: 70px" src="assets/img/unsdi.png">
+            </div>
+
+            <div class="col">
+              <img style="width: 50px" src="assets/img/ican3.png">
+            </div>
+          </div>
+      </div>
+    </div>
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-light text-center text-lg-start">
+
+
+  <!-- Copyright -->
+  <div class="text-center p-3 container" style="border-top: 1px solid rgba(146, 155, 172, 0.2);">
+    <p style="font-size: 12px;color: #8a94a6;">&reg;2021 Centro de Ciencias de la Atmósfera, UNAM. INDAUTOR 04-2011-120915512800-203</p>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="assets/js/three.js"></script>
+    <script src="assets/js/orbital-controls.js"></script>
+    <script src="assets/js/globe.js"></script>
+
+  </body>
+
+</html>
